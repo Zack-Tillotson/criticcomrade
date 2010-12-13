@@ -1,0 +1,56 @@
+<?php
+    $m = $GLOBALS['m'];
+
+    switch($m->getCriticReviewList()->getComradeSuggestion())
+    {
+        case -2:
+            $cc_img = "suggestion-bad-2";
+            $cc_sug = "Skip it!";
+            break;
+        case -1:
+            $cc_img = "suggestion-bad-1";
+            $cc_sug = "Probably won't like it";
+            break;
+        case 1:
+            $cc_img = "suggestion-good-1";
+            $cc_sug = "Probably will like it";
+            break;
+        case 2:
+            $cc_img = "suggestion-good-2";
+            $cc_sug = "Watch it!";
+            break;
+        default:
+            $cc_img = "suggestion-none";
+            $cc_sug = "";
+            break;
+    }
+        
+?>
+                <div class="title"><a href="/movies/id/<?php print $m->getMovieID(); ?>/"><?php print $m->getTitle(); ?></a></div>
+                <img class="snuggle-left" src="/common/img/movie/<?php print (image_exists('/movie/' . $m->getMovieID() . '_poster.jpg') ? $m->getMovieID() : 'empty'); ?>_poster.jpg" alt="poster" width="95" height="140" />
+                <div class="score-box">
+                    <div class="title">CCCP Suggestion<a href="/faq/#cccp-suggestion"><img src="/common/img/info.png" alt="suggestion-help" width="15" height="15" /></a></div>
+                    <div class="main"><img src="/common/img/<?php print $cc_img; ?>.png" height="40" width="40" alt="<?php print $cc_img; ?>" /></div>
+                    <div class="secondary"><?php print $cc_sug; ?></div>
+                </div>
+                <div class="score-box">
+                    <div class="title">Average Critic Score</div>
+                    <div class="main"><?php print number_format(round($m->getCriticReviewList()->getPositiveReviewCount() / $m->getCriticReviewList()->getReviewCount() * 100, 0), 0); ?>%</div>
+                    <div class="secondary">(Positive: <?php print $m->getCriticReviewList()->getPositiveReviewCount(); ?>/<?php print $m->getCriticReviewList()->getReviewCount(); ?>)</div>
+                </div>
+                <table class="wide">
+                    <tbody>
+                        <tr>
+                            <td class="row-name">Release Date</td>
+                            <td><?php print $m->getReleaseDate(); ?></td>
+                        </tr>
+                        <tr>
+                            <td class="row-name">Rating</td>
+                            <td><span class="bold"><?php print $m->getRating(); ?></span> <span class="grey-color"><?php print $m->getRatingReason(); ?></span></td>
+                        </tr>
+                        <tr>
+                            <td class="row-name">Summary</td>
+                            <td><?php print $m->getSummary(); ?></td>
+                        </tr>
+                    </tbody>
+                </table>

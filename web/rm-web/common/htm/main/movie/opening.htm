@@ -1,0 +1,24 @@
+            <h1>Opening Movies</h1>
+<?php
+    $url = $GLOBALS['RM_API_LOC'] . '/movies/opening/sid/' . session_id() . '/?order-by=total-critic-reviews&count=5';
+    $ml = new MovieList(xml2ary(getRESTXML($url)));
+
+    if(sizeof($ml->getMovies()) != 0)
+    {
+?>
+            <h2>Big Shows</h2>
+<?php
+        print_movie_list($ml, "dittary");
+    }
+
+    $url = $GLOBALS['RM_API_LOC'] . '/movies/opening/sid/' . session_id() . '/?order-by=total-critic-reviews&count=1000&offset=5';
+    $ml = new MovieList(xml2ary(getRESTXML($url)));
+    
+    if(sizeof($ml->getMovies()) != 0)
+    {
+?>
+            <h2>Other Shows</h2>
+<?php
+        print_movie_list($ml, "dittary");
+    }
+?>

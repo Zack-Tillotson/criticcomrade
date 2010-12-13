@@ -1,0 +1,18 @@
+<?php
+
+    // Print the movie summary information
+    print_movie($GLOBALS['m'], "summary");
+
+    // Print the user review form
+    include_form('user_review.htm');
+
+    // Print the critic review summary
+    print_critic_reviews($GLOBALS['m'], "summary");
+
+    // Print the user review summary
+    //print_user_reviews($GLOBALS['m'], "summary");
+
+    // Print the user stats
+    print_movie_stats($GLOBALS['m']);
+    
+?>

@@ -1,0 +1,25 @@
+<?php
+    $cr = $GLOBALS['cr'];
+    $type = $GLOBALS['type'];
+?>
+                            <div class="review-image"><a href="/critics/id/<?php print $cr->getCriticID(); ?>/reviews/<?php print $cr->getMovieID(); ?>/"><img src="/common/img/<?php print ($cr->getScore() == 1) ? 'suggestion-good-2' : 'suggestion-bad-2'; ?>.png" width="25" height="25" alt="<?php print ($cr->getScore() == 1) ? 'review-good' : 'review-bad'; ?>" /></a></div>
+<?php
+    if($type != "critic")
+    {
+?>                            
+                            <div class="name-line"><a href="/critics/id/<?php print $cr->getCriticID(); ?>/"><?php print $cr->getName(); ?> | <?php print $cr->getPublisher(); ?></a></div>
+<?php
+    }
+    
+    if($type != "movie")
+    {
+?>
+                            <div class="name-line"><a href="/movies/id/<?php print $cr->getMovieID(); ?>/"><?php print $cr->getTitle(); ?></a></div>
+<?php
+    }
+?>
+                            <div class="summary-line"><?php print $cr->getSummary(); ?></div>
+                            <div class="etc-line">
+                                <span class="date"><?php print $cr->getReviewDate(); ?></span>
+                                <a href="<?php print $cr->getLink(); ?>"><img src="/common/img/outside-link.png" width="12" height="10" alt="Outside" /> Link</a>
+                            </div>

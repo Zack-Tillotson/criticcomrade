@@ -1,0 +1,102 @@
+<?xml version="1.0" standalone="yes"?>
+<critic-stats-summary>
+    <critic-stats>
+        <critic-count>1547</critic-count>
+        <critic-count-last-week>15</critic-count-last-week>
+        <review-count>21342</review-count>
+        <review-count-last-week>654</review-count-last-week>
+        <most-reviewed-current-movie>
+            <id>2009-adventureland</id>
+            <title>Adventureland</title>
+            <review-count>145</review-count>
+            <positive-review-count>126</positive-review-count>
+        </most-reviewed-current-movie>
+    </critic-stats>
+    <latest-review-list>
+        <latest-review>
+            <critic-id>manohla-dargis-at-the-new-york-times</critic-id>
+            <name>Manohla Dargis</name>
+            <publisher>The New York Times</publisher>
+            <id>2009-lymelife</id>
+            <title>Lymelife</title>
+            <score>1</score>
+            <review>Despite such floundering, Lymelife keeps you hooked, mostly through Mr. Hutton, Mr. Baldwin and Kieran Culkin as Scott&apos;s older brother, Jimmy.
+            </review>
+            <date>Apr 08, 2009</date>
+            <outside-link>http://movies.nytimes.com/2009/04/08/movies/08lyme.html?ref=movies</outside-link>
+        </latest-review>
+        <latest-review>
+            <critic-id>michael-rechtshaffen-at-the-hollywood-reporter</critic-id>
+            <name>Michael Rechtshaffen</name>
+            <publisher>The Hollywood Reporter</publisher>
+            <id>2009-hannah-montana-the-movie</id>
+            <title>Hannah Montana: The Movie</title>
+            <score>0</score>
+            <review>There are sufficient pratfalls and Miley/Hannah quick-changes to satisfy the fans, while Cyrus retains that natural, unforced likability that made her a star in the first place.
+
+            </review>
+            <date>Apr 08, 2009</date>
+            <outside-link>http://www.hollywoodreporter.com/hr/film-reviews/film-review-hannah-montana-the-movie-1003959904.story</outside-link>
+        </latest-review>
+        <latest-review>
+            <critic-id>duane-byrge-at-the-hollywood-reporter</critic-id>
+            <name>Duane Byrge</name>
+            <publisher>The Hollywood Reporter</publisher>
+            <id>2009-mysteries-of-pittsburgh-the</id>
+            <title>Mysteries of Pittsburgh, The</title>
+            <score>1</score>
+            <review>In the film&apos;s most flamboyant role, Peter Sarsgaard&apos;s devil-ish charisma and cold bluster is frightening.
+            </review>
+            <date>Apr 07, 2009</date>
+            <outside-link>http://www.hollywoodreporter.com/hr/film/reviews/article_display.jsp?rid=10498</outside-link>
+        </latest-review>
+        <latest-review>
+            <critic-id>jamie-tipps-at-film-threat</critic-id>
+            <name>Jamie Tipps</name>
+            <publisher>Film Threat</publisher>
+            <id>2009-mysteries-of-pittsburgh-the</id>
+            <title>Mysteries of Pittsburgh, The</title>
+            <score>0</score>
+            <review>Disappointed fans of Michael Chabon will have to watch &quot;Wonder Boys&quot; for solace, for The Mysteries of Pittsburgh boasts only one core mystery: how one can take such promising material and render it completely unmemorable?
+
+            </review>
+            <date>Apr 07, 2009</date>
+            <outside-link>http://www.filmthreat.com/index.php?section=reviews&amp;amp;Id=10612</outside-link>
+        </latest-review>
+        <latest-review>
+            <critic-id>rob-nelson-at-variety</critic-id>
+            <name>Rob Nelson</name>
+            <publisher>Variety</publisher>
+            <id>2009-lymelife</id>
+            <title>Lymelife</title>
+            <score>1</score>
+            <review>Intense perfs by Rory Culkin and Alec Baldwin are standouts in a movie that brims with vivid supporting turns.
+            </review>
+            <date>Apr 07, 2009</date>
+            <outside-link>http://www.variety.com/review/VE1117938344.html?categoryid=2863&amp;amp;cs=1&amp;amp;query=lymelife</outside-link>
+        </latest-review>
+    </latest-review-list>
+    <popular-movie-list>
+        <popular-movie>
+            <id>2009-adventureland</id>
+            <title>Adventureland</title>
+        </popular-movie>
+        <popular-movie>
+            <id>2009-fast--furious</id>
+            <title>Fast &amp; Furious</title>
+        </popular-movie>
+        <popular-movie>
+            <id>2009-alien-trespass</id>
+            <title>Alien Trespass</title>
+        </popular-movie>
+        <popular-movie>
+            <id>2009-monsters-vs-aliens</id>
+            <title>Monsters vs. Aliens</title>
+        </popular-movie>
+        <popular-movie>
+            <id>2009-sugar</id>
+            <title>Sugar</title>
+        </popular-movie>
+    </popular-movie-list>
+</critic-stats-summary>
+

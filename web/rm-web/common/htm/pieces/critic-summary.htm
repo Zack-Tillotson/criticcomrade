@@ -1,0 +1,30 @@
+<?php
+    $c = $GLOBALS['c'];
+?>
+            <div class="title"><a href="/critics/id/<?php print $c->getCriticID(); ?>/"><?php print $c->getNameAndPublisher(); ?></a></div>
+<?php
+    if($c->getComradery() != "-1")
+    {
+?>
+            <div class="cc-score-box">
+                <div>Comradery</div>
+                <div class="anything-else-bucket">
+                    <div class="anything-else">Intersecting: <?php print $c->getReviewList()->getComradeIntersectCount(); ?></div>
+                    <div class="anything-else">Agree: <?php print $c->getReviewList()->getComradeAgreeCount(); ?></div>
+                    <div class="anything-else">Disagree: <?php print $c->getReviewList()->getComradeIntersectCount() - $c->getReviewList()->getComradeAgreeCount(); ?></div>
+                </div>
+                <div class="avg-score"><?php print $c->getComradery(); ?></div>
+                <div class="center small">
+                    <span class="look-at-me">?</span><a href="/faq/#critic-comradery"> What does this mean </a><span class="look-at-me">?</span>
+                </div>
+            </div>
+<?php
+    }
+?>
+            <div class="description-box">
+                <div>Statistics</div>
+                <div class="anything-else">Review Count: <?php print $c->getReviewList()->getReviewCount(); ?></div>
+                <div class="anything-else">Positive: <?php print $c->getReviewList()->getPositiveReviewCount(); ?></div>
+                <div class="anything-else">Negative: <?php print $c->getReviewList()->getReviewCount() - $c->getReviewList()->getPositiveReviewCount(); ?></div>
+                <div class="anything-else">Recent: <?php print $c->getReviewList()->getRecentReviewCount(); ?></div>
+            </div>

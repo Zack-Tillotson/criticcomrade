@@ -1,0 +1,26 @@
+<?php
+    $userInfo = $GLOBALS['CC_API']['SESSION_DITTY'];
+?>
+            <h1>Tutorial - Step 2</h1>
+            <div>
+                <img src="/common/img/tutorial-step-2.png" width="450" height="150" alt="On step 2 of 3" />
+            </div>
+            <p>
+                We have calculated how well the critics match with your ratings. Here are the best and worst of your critic comrades!
+            </p>
+            <h2>Best Critics</h2>
+<?php
+        $url = $GLOBALS['RM_API_LOC'] . '/critics/all/sid/' . session_id() . '/?type=ditty&count=10&order-by=comrade';
+        $critics = new CriticList(xml2ary(getRESTXML($url)));
+        print_critic_list($critics, "dittary");
+?>
+            <h2>Worst Critics</h2>
+<?php
+        $url = $GLOBALS['RM_API_LOC'] . '/critics/all/sid/' . session_id() . '/?type=ditty&count=10&order-by=comrade-desc';
+        $critics = new CriticList(xml2ary(getRESTXML($url)));
+        print_critic_list($critics, "dittary");
+?>
+            <p>
+                Now we can give you suggestions for whether to watch a movie. For an example,
+            </p>
+            <div><a href="/users/tutorial/step-3/"><img src="/common/img/click-here.png" alt="click-here" height="50" width="120" /></a></div>

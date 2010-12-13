@@ -1,0 +1,55 @@
+<?php
+
+    $review = new UserReview(xml2ary(getRESTXML($GLOBALS['RM_API_LOC'] . '/sessions/id/' . session_id() . '/id/' . $GLOBALS['m']->getMovieID() . '/')));
+
+    if($review->isErrorObject())
+    {
+        $form_user = 'Trial User';
+        $form_date = Date('M j, Y');
+        $form_score = '-1';
+    }
+    else
+    {
+        $form_user = $review->getUserName();
+        $form_date = $review->getReviewDate();
+        $form_score = $review->getScore();
+    }
+
+?>
+                <form id="user-full-rate" action="/form/user_review/" method="post">
+                    <input type="hidden" name="ref" value="<?php print $GLOBALS['RM_REQ']['URI'][0]; ?>"></input>
+                    <input type="hidden" name="mid" value="<?php print $GLOBALS['m']->getMovieID(); ?>"></input>
+                    <input type="hidden" name="title" value="<?php print $GLOBALS['m']->getTitle(); ?>"></input>
+                    <input type="hidden" name="rev-date" value="<?php print $form_date; ?>" readonly="true"></input>
+                    <table class="wide">
+                        <tbody>
+                            <tr>
+                                <td class="bigger row-name">Rate It</td>
+                                <td>
+                                    <input type="radio" name="score" value="1"<?php if($form_score == 1) print ' checked="checked"'; ?>></input>
+                                    <span class="bold like-color">Loved</span> or <span class="bold hate-color">Hated</span>
+                                    <input type="radio" name="score" value="0"<?php if($form_score == 0) print ' checked="checked"'; ?>></input>
+                                </td>
+                            </tr>
+<?php
+    if(!$review->isErrorObject())
+    {
+?>
+                            <tr>
+                                <td class="row-name">Review Date</td>
+                                <td><?php print $form_date; ?></td>
+                            </tr>
+<?php 
+    }
+?>
+                            <tr>
+                                <td class="row-name">Review (optional)</td>
+                                <td><textarea rows="1" cols="50" name="words"><?php print $review->getSummary(); ?></textarea></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td><input type="submit" value="Submit"></input></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </form>

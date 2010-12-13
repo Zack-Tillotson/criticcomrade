@@ -1,0 +1,55 @@
+<?php
+    $ml = $GLOBALS['ml'];
+?>
+                <table>
+                    <thead>
+                        <tr>
+                            <td class="bold">Title</td>
+                            <td class="bold">Release Date</td>
+                            <td class="bold">CCCP</td>
+                            <td class="bold">Avg</td>
+                            <td class="bold">Count</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+<?php
+    foreach($ml->getMovies() as $m)
+    {
+
+        switch($m->getCriticReviewList()->getComradeSuggestion())
+        {
+            case -2:
+                $cc_img = "suggestion-bad-2.png";
+                break;
+            case -1:
+                $cc_img = "suggestion-bad-1.png";
+                break;
+            case 1:
+                $cc_img = "suggestion-good-1.png";
+                break;
+            case 2:
+                $cc_img = "suggestion-good-2.png";
+                break;
+            default:
+                $cc_img = "suggestion-none.png";
+                break;
+        }
+
+        $avg_per = intval(100 * $m->getCriticReviewList()->getPositiveReviewCount() / $m->getCriticReviewList()->getReviewCount());
+        $avg_color = (false) ? "grey-color" :
+                     (($avg_per >= 75) ? "good-color" :
+                     (($avg_per >= 55) ? "ok-color" :
+                     "bad-color"));
+?>
+                        <tr>
+                            <td class="full-title-col"><a href="/movies/id/<?php print $m->getMovieID(); ?>/"><?php print $m->getTitle(); ?></a></td>
+                            <td class="full-date-col"><?php print $m->getReleaseDate(); ?></td>
+                            <td class="full-score-col"><img src="/common/img/<?php print $cc_img; ?>" alt="cccp" width="15" height="15" /></td>
+                            <td class="full-score-col"><span class="<?php print $avg_color; ?>"><?php print $avg_per ?>%</span></td>
+                            <td class="full-count-col"><?php print $m->getCriticReviewList()->getReviewCount(); ?></td>
+                        </tr>
+<?php
+    }
+?>
+                    </tbody>
+                </table>

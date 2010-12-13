@@ -1,0 +1,10 @@
+<?php
+
+    $cid = $GLOBALS['RM_REQ']['URI'][3];
+
+    $url = $GLOBALS['RM_API_LOC'] . '/critics/id/' . $cid . '/sid/' . session_id() . '/';
+    $c = new Critic(xml2ary(getRESTXML($url)));
+
+    print_critic($c, "full");
+
+?>

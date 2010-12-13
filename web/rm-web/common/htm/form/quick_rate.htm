@@ -1,0 +1,59 @@
+        <div id="quick-rate-section">
+<?php
+
+        $max_movies = ($form_max_movies > 0) ? $form_max_movies : 9999999;
+        $is_tutorial = isset($form_is_tutorial) ? $form_is_tutorial : false;
+        
+        $url = $GLOBALS['RM_API_LOC'] . '/movies/not-reviewed/sid/' . session_id() . '/?count=' . $max_movies;
+        $ml = new MovieList(xml2ary(getRESTXML($url)));
+?>
+                <form action="/form/user_quick_rate/" method="post">
+                    <input type="hidden" name="num-movies" value="<?php print $ml->getCount(); ?>"></input>
+                    <input type="hidden" name="ref" value="<?php print ($is_tutorial) ? "/users/tutorial/step-2/" : $GLOBALS['RM_REQ']['URI'][0]; ?>"></input>
+<?php
+
+    $i = 0;
+    foreach($ml->getMovies() as $mov)
+    {
+
+        $i++;
+
+        if($i %25 == 1 && $i > 1)
+        {
+?>
+                        </tbody>
+                    </table>
+<?php
+        }
+
+        if($i % 25 == 1)
+        {
+?>
+                    <table class="quick-rate-list">
+                        <thead>
+                            <tr>
+                                <td class="long-title-col quick-table-title">Title</td>
+                                <td class="score-col rate-good quick-table-title">+</td>
+                                <td class="score-col rate-bad quick-table-title">-</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+<?php
+        }
+?>
+                            <tr>
+                                <td class="long-title-col">
+                                    <input type="hidden" name="id-<?php print $i; ?>" value="<?php print $mov->getMovieID(); ?>"></input>
+                                    <a href="/movies/id/<?php print $mov->getMovieID(); ?>/" target="_blank"><?php print substr($mov->getTitle(), 0, 32) . (strlen($mov->getTitle()) > 32 ? "..." : ""); ?></a>
+                                </td>
+                                <td class="score-col rate-good"><input type="radio" name="score-<?php print $i; ?>" value="1" /></td>
+                                <td class="score-col rate-bad"><input type="radio" name="score-<?php print $i; ?>" value="0" /></td>
+                            </tr>
+<?php
+    }
+?>
+                        </tbody>
+                    </table>
+                    <div class="form-submit"><input type="submit" value="Submit"></input></div>
+                </form>
+        </div>

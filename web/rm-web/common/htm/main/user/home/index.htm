@@ -1,0 +1,40 @@
+<?php
+    $userInfo = $GLOBALS['CC_API']['SESSION_DITTY'];
+
+    if($userInfo->isGuest())
+    {
+?>
+            <h1>My Home</h1>
+            <p>This section needs to know what user you are.</p>
+<?php
+            include 'common/htm/form/login.htm';
+            return 1;
+    }
+    elseif($userInfo->isTemporary())
+    {
+?>
+            <h1>User Home: Trial</h1>
+            <p>Create an account to save your reviews</p>
+<?php
+    }
+    elseif($userInfo->isReal())
+    {
+?>
+            <h1>User Home: <?php print $userInfo->getUserName(); ?></h1>
+            <p>Join Date: <?php print $userInfo->getCreateDate(); ?></p>
+<?php
+    }
+
+    if($userInfo->isReal() || $userInfo->isTemporary())
+    {
+?>
+
+            <h3><a href="/users/my/reviews/">My Reviews (<?php print $userInfo->getReviewCount(); ?>)</a></h3>
+            <p>This is the movies you have reviewed.</p>
+            <h3><a href="/users/my/critics/">My Comrades</a></h3>
+            <p>See which critics are your comrades in movies and also which disagree with you the most.</p>
+            <h3><a href="/users/my/reviews/quick-rate/">Quickly Rate More</a></h3>
+            <p>Want to get better suggestions? The more movies you rate the better.</p>
+<?php
+    }
+?>

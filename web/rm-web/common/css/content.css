@@ -1,0 +1,609 @@
+<?php $red_color = "#B20000"; ?>
+
+/* Common */
+
+html { font-family: Arial, Helvetica, sans-serif; font-size: 14px; letter-spacing: .5px; }
+
+body :link {
+    text-decoration: none;
+}
+body :visited {
+    text-decoration: none;
+}
+
+body :visited:hover {
+    text-decoration:underline;
+    color: #cc0000;
+}
+
+body :link:hover {
+    text-decoration:underline;
+    color: #cc0000;
+}
+
+h1 {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+h2 {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+h3 {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+a.sneaky-link {
+    color: #F3EB1E;
+}
+
+.center {
+    text-align: center
+}
+
+.blurred {
+    color: gray
+}
+
+body img {
+    border-top-style: none;
+    border-bottom-style: none;
+    border-left-style: none;
+    border-right-style: none;
+}
+
+.grey-color {
+    color: #666666;
+}
+
+.invis {
+    display: none;
+}
+
+.bad-color {
+    color: #cc0000;
+}
+
+.ok-color {
+    color: #ff9900;
+}
+
+.good-color {
+    color: #00cc00;
+}
+
+.pad-left-side {
+    margin-left: 30px;
+}
+
+.pad-right-side {
+    margin-left: 30px;
+}
+
+.look-at-me {
+    color: #ff0000;
+}
+
+.same-line {
+    display: inline;
+}
+
+.new-line {
+    display: block;
+    clear: both;
+}
+
+.snuggle-right {
+    float: right;
+}
+
+.snuggle-left {
+    float: left;
+}
+
+.bigger {
+    font-size: 125%;
+}
+
+.somewhat-bigger {
+    font-size: 110%;
+}
+
+.smaller {
+    font-size: 85%;
+}
+
+.tiny {
+    font-size: 70%;
+}
+
+
+.small {
+    font-size: 85%;
+}
+
+.bottom-spacer {
+    border-bottom: solid 1px #cccccc;
+    margin-bottom: 5px;
+    padding-bottom: 5px;
+}
+
+.bold { font-weight: bold; }
+
+.top-spacer {
+    border-top-style: solid;
+    border-top-width: 1px;
+    border-top-color: #999999;
+}
+
+.like-color {
+    color: #33cc00;
+}
+
+.hate-color {
+    color: red;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+table.full-width {
+    width: 100%
+}
+
+table.space-it td {
+    padding-left: 3px;
+    padding-right: 3px;
+}
+
+td.score-col {
+    width: 40px;
+    text-align: center;
+}
+
+td.name-col {
+    /*width: 50%;*/
+}
+
+td.short-title-col {
+    width: 75%;
+}
+
+td.short-date-col {
+    float: right;
+    width: 40px;
+}
+
+td.percent-col {
+    width: 45px;
+    text-align: right;
+}
+
+td.count-col {
+    width: 55px;
+    text-align: right;
+}
+
+td.title-col {
+    width: 150px;
+    text-align: left;
+}
+
+td.long-title-col {
+    width: 250px;
+    text-align: left;
+}
+
+td.key-col {
+    width: 100px;
+}
+
+td.value-col {
+    width: 40px;
+    text-align: right;
+}
+
+td.border-top {
+    border-top: solid 1px #cccccc;
+}
+
+td.full-score-col {
+    width: 50px;
+}
+
+td.full-count-col {
+    width: 40px;
+    text-align: right;
+}
+
+td.full-title-col {
+    width: 500px;
+}
+
+td.full-date-col {
+    width: 100px;
+}
+
+td.half-page {
+    width: 50%;
+}
+
+td.reviews-box-links {
+    vertical-align: top;
+}
+
+td.rate-good {
+    background-color: #ccfe80;
+}
+
+td.rate-bad {
+    background-color: #febfbf;
+}
+
+table.full-page {
+    width: 100%;
+}
+
+table.quick-rate-list {
+    margin-top: 5px;
+    margin-right: 10px;
+    float: left;
+}
+
+form.form-inline {
+    display: inline;
+}
+
+div.form-submit {
+    clear: both;
+    border-top: solid 1px #cccccc;
+    position: relative;
+    top: 3px;
+    padding-top: 3px;
+}
+
+#left-sidebar-section table thead tr.titles {
+    border-bottom: solid 2px black;
+}
+
+.float-right {
+    float: right;
+}
+
+.float-left {
+    float: left;
+}
+
+.quick-table-title-div {
+    font-size: 85%;
+    margin-bottom: 1px;
+}
+
+.quick-table-title {
+    border-bottom: solid 1px black;
+}
+
+#quick-movie-cloud .cloud {
+    font-size: 75%;
+    text-align: justify;
+}
+
+/* Left Side */
+
+#left-sidebar-section {
+    border-right-style: solid;
+    border-right-width: 2px;
+    border-right-color: black;
+}
+
+#left-sidebar-section h2 {
+    font-size: 95%;
+    color: #F3EB1E;
+    background: <?php print $red_color; ?>;
+    border-top: solid 1px black;
+    border-bottom: solid 1px black;
+    margin-bottom: 5px;
+}
+
+#left-sidebar-section h3 {
+    font-size: 80%;
+    margin: 10px 0px 0px 0px;
+}
+
+#left-sidebar-section #quick-movie-list .small {
+    font-size: 80%;
+}
+
+#left-sidebar-section #quick-movie-list table {
+    font-size: 80%;
+}
+
+/* Right Side */
+
+#right-sidebar-section {
+    border-left-style: solid;
+    border-left-width: 2px;
+    border-left-color: black;
+}
+
+#right-sidebar-section h2 {
+    font-size: 95%;
+    color: #F3EB1E;
+    background: <?php print $red_color; ?>;
+    border-top: solid 1px black;
+    border-bottom: solid 1px black;
+    margin-bottom: 5px;
+}
+
+#right-sidebar-section h3 {
+    font-size: 90%;
+    margin-bottom: 0px;
+}
+
+#right-sidebar-section #quick-my-section {
+    font-size: 80%;
+}
+
+#right-sidebar-section p { margin-top: 0px; margin-bottom: 5px; }
+#right-sidebar-section td.left-small { width: 100px; text-align: left; padding-left: 10px; }
+#right-sidebar-section td.right-small { width: 100px; text-align: right; padding-right: 10px; }
+#right-sidebar-section table.small { width: 200px; font-size: 75%; }
+#right-sidebar-section p.suggestion { padding-left: 15px; }
+#right-sidebar-section div.seperator { width: 100%; border-bottom: solid 1px gray; margin-top: 5px; margin-bottom: 5px; }
+#right-sidebar-section h3 a.sneaky-link { color: black; }
+#right-sidebar-section table thead tr.titles { border-bottom: solid 2px black; }
+#right-sidebar-section table .name-col { width: 140px; }
+#right-sidebar-section table .score-col { width: 60px; text-align: right }
+#right-sidebar-section table.critics thead tr { font-size: 80% }
+
+/* Top */
+
+#top-bar {
+    background-color: <?php print $red_color; ?>;
+    border-top: solid 3px black;
+    border-bottom: solid 3px black;
+}
+
+#top-bar a {
+    color: white;
+    font-weight: bold;
+}
+
+#top-bar #page-title {
+    font-size: 22px;
+    color: #ffff00;
+}
+
+#section-tabs {
+    color: white;
+    border-top: solid 1px black;
+    border-bottom: solid 1px black;
+}
+
+#section-tabs a {
+    font-size: 14px;
+    font-weight: bold;
+    color: red;
+}
+
+#section-tabs a:visited {
+    color: #660000;
+}
+
+
+/* Foot */
+
+#footer-section {
+    border-top: solid 2px #cccccc;
+    border-bottom: solid 2px #cccccc;
+    padding-bottom: 5px;
+    margin-bottom: 5px;
+}
+
+#footer-section #footer-stuff {
+    margin-right: 20px;
+}
+
+/* Center */
+
+#center-content-section h1 {
+    font-size: 225%;
+    margin: 10px 0 0 0;
+}
+#center-content-section h2 {
+
+}
+#center-content-section h3 {
+
+}
+
+#center-content-section #about-movie {
+
+}
+
+#center-content-section #about-movie .small {
+    font-size: 85%;
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+
+#center-content-section #reviews-section .pos-review {
+    background-color: #A6FF54;
+
+}
+
+#center-content-section #reviews-section .neg-review {
+    background-color: #FF9B8C;
+}
+
+#center-content-section form .form-required {
+    color: #cc0000;
+}
+
+#center-content-section form .form-header {
+    background-color: #666666;
+    color: #ffffff;
+}
+
+#center-content-section .display-inline {
+    display: inline;
+}
+
+#center-content-section form table {
+    border-collapse: collapse;
+}
+
+#center-content-section .center {
+    text-align: center;
+}
+
+#center-content-section .centered {
+    margin: auto;
+}
+
+#center-content-section .big-important {
+    font-size: 200%;
+}
+
+#center-content-section .small-paragraph {
+    width: 350px;
+}
+
+#center-content-section #instructions {
+    float: right;
+    width: 225px;
+    display: inline;
+    border: solid 2px black;
+    padding: 5px;
+    margin: 5px;
+}
+
+#center-content-section div.title {
+    font-size: 150%;
+    clear: both;
+}
+
+#center-content-section div.score-box {
+    float: left;
+    margin: 5px;
+    padding: 5px;
+    border-left: solid 1px #cccccc;
+}
+
+#center-content-section div.score-box div.title {
+    font-weight: bold;
+    color: #666666;
+    font-size: 95%;
+    margin-bottom: 10px;
+}
+
+#center-content-section div.score-box div.main {
+    font-size: 250%;
+    margin-left: 10px;
+    height: 60px;
+}
+
+#center-content-section div.score-box div.secondary {
+    margin-left: 15px;
+    font-weight: bold;
+    font-size: 85%;
+}
+
+#center-content-section div.anything-else-bucket {
+    float: right;
+}
+
+#center-content-section div.anything-else {
+    font-size: 80%;
+}
+
+#center-content-section div.cc-score-box {
+    width: 230px;
+    float: left;
+    background-color: #cccccc;
+    margin: 3px;
+    padding: 3px;
+}
+
+#center-content-section table.wide {
+    clear: both;
+    font-size: 90%;
+}
+
+#center-content-section table.wide td.row-name {
+    width: 100px;
+    vertical-align: top;
+}
+
+#center-content-section table.pictary-table {
+    width: 500px
+}
+
+#center-content-section td.half-wide {
+    width: 300px;
+}
+
+#center-content-section form#user-full-rate {
+    border-top: double 1px gray;
+    border-bottom: double 1px gray;
+    padding: 5px;
+    margin: 5px;
+}
+
+#center-content-section td.single-review {
+    border-top: solid 2px black;
+
+}
+
+#center-content-section div.review-image {
+    float: left;
+}
+
+#center-content-section div.name-line {
+    padding-left: 30px;
+    font-size: 80%;
+}
+
+#center-content-section div.score-line {
+    float: left;
+    font-size: 145%;
+    font-weight: bold;
+}
+
+#center-content-section div.summary-line {
+    font-size: 85%;
+    padding-left: 50px;
+}
+
+#center-content-section div.etc-line {
+    text-align: right;
+    margin-right: 10px;
+    font-size: 70%;
+}
+
+#center-content-section span.date {
+    margin-right: 20px;
+}
+
+td.left-col {
+    border-right: solid 1px black;
+}
+
+#center-content-section div.faq-question {
+    font-weight: bold;
+    margin-left: 10px;
+    font-size: 100%;
+}
+
+#center-content-section div.faq-answer {
+    margin-left: 20px;
+    font-size: 85%;
+    width: 500px;
+}
+
+#center-content-section div.faq-answer img {
+    border: solid 2px black;
+}

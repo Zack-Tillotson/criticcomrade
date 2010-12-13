@@ -1,0 +1,88 @@
+<?php
+    $m = $GLOBALS['m'];
+?>
+                <h3>Movie Stats</h3>
+                <table class="wide">
+                    <tbody>
+                        <tr>
+                            <td class="row-name">Genres</td>
+                            <td>
+<?php
+        $g = $m->getGenres();
+        for($i = 0 ; $i + 1 < count($g) ; $i++)
+        {
+?>
+                                    <?php print $g[$i]; ?>,
+<?php
+        }
+?>
+                                    <?php print $g[count($g)-1]; ?>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="row-name">Stars</td>
+                            <td>
+<?php
+        $g = $m->getStars();
+        for($i = 0 ; $i + 1 < count($g) ; $i++)
+        {
+?>
+                                    <?php print $g[$i]; ?>,
+<?php
+        }
+?>
+                                    <?php print $g[count($g)-1]; ?>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="row-name">Director</td>
+                            <td>
+<?php
+        $g = $m->getDirector();
+        for($i = 0 ; $i + 1 < count($g) ; $i++)
+        {
+?>
+                                    <?php print $g[$i]; ?>,
+<?php
+        }
+?>
+                                    <?php print $g[count($g)-1]; ?>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="row-name">Writers</td>
+                            <td>
+<?php
+        $g = $m->getWriters();
+        for($i = 0 ; $i + 1 < count($g) ; $i++)
+        {
+?>
+                                    <?php print $g[$i]; ?>,
+<?php
+        }
+?>
+                                    <?php print $g[count($g)-1]; ?>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="row-name">Studio</td>
+                            <td><?php print $m->getPublisher(); ?></td>
+                        </tr>
+                        <tr>
+                            <td class="row-name">Review Count</td>
+                            <td><?php print $m->getCriticReviewList()->getReviewCount(); ?></td>
+                        </tr>
+                        <tr>
+                            <td class="row-name">Positive</td>
+                            <td><?php print $m->getCriticReviewList()->getPositiveReviewCount(); ?></td>
+                        </tr>
+                        <tr>
+                            <td class="row-name">Negative</td>
+                            <td><?php print $m->getCriticReviewList()->getReviewCount() - $m->getCriticReviewList()->getPositiveReviewCount(); ?></td>
+                        </tr>
+                        <tr>
+                            <td class="row-name">Recent</td>
+                            <td><?php print $m->getCriticReviewList()->getRecentReviewCount(); ?></td>
+                        </tr>
+                    </tbody>
+                </table>

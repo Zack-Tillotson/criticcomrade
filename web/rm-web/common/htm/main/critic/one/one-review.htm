@@ -1,0 +1,8 @@
+<?php
+
+    $url = $GLOBALS['RM_API_LOC'] . '/critics/id/' . $GLOBALS['RM_REQ']['URI'][3] . '/reviews/' . $GLOBALS['RM_REQ']['URI'][5] . '/';
+    $cr = new CriticReview(xml2ary(getRESTXML($url)));
+    
+    print_critic_review($cr, "both");
+    
+?>

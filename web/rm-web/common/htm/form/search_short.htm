@@ -1,0 +1,25 @@
+<?php
+    $prev_search = isset($GLOBALS['RM_REQ']['URI'][2]) ? $GLOBALS['RM_REQ']['URI'][2] : "";
+    $prev_search = urldecode($prev_search);
+
+    // If none of the boxes are checked, then that means they're all checked
+    if($GLOBALS['RM_REQ']['PARAMS']['movie-titles'] != "true" &&
+       $GLOBALS['RM_REQ']['PARAMS']['critic-names'] != "true" &&
+       $GLOBALS['RM_REQ']['PARAMS']['critic-pubs'] != "true")
+    {
+       $GLOBALS['RM_REQ']['PARAMS']['movie-titles'] = "true";
+       $GLOBALS['RM_REQ']['PARAMS']['critic-names'] = "true";
+       $GLOBALS['RM_REQ']['PARAMS']['critic-pubs'] = "true";
+    }
+?>
+            <div id="short-search">
+                <form action="/form/basic_search/" method="post">
+                    <input type="text" name="search-box" size="40" value="<?php print $prev_search; ?>" />
+                    <input type="submit" value="Search" />
+                    <br>
+                    <input type="checkbox" name="search-movie-titles" value="true" <?php if($GLOBALS['RM_REQ']['PARAMS']['movie-titles'] == "true") print "checked"; ?> /> Movie Titles
+                    <input type="checkbox" name="search-critic-names" value="true" <?php if($GLOBALS['RM_REQ']['PARAMS']['critic-names'] == "true") print "checked"; ?> /> Critic Names
+                    <input type="checkbox" name="search-critic-publishers" value="true" <?php if($GLOBALS['RM_REQ']['PARAMS']['critic-pubs'] == "true") print "checked"; ?> /> Critic Publishers
+                </form>
+                <!--<span class="small"><a href="/search/">Go Advanced</a></span>-->
+            </div>

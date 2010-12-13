@@ -1,0 +1,4 @@
+<?php $_SESSION['IS_ROBOT'] = true; ?>
+User-agent: *
+Allow: /*/reviews/$
+Disallow: /*/reviews/

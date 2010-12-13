@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context antiJARLocking="true" path="/cc-api">
+    <Resource 
+        name="jdbc/CCDB"
+        auth="Container"
+        type="javax.sql.DataSource" 
+        username="critic_review"
+        password="critic_review_pwd"
+        driverClassName="com.mysql.jdbc.Driver"
+        url="jdbc:mysql://notatrick.com:3306/critic_review_new"
+        maxActive="8"
+        maxIdle="4"
+        minIdle="3"
+    />
+</Context>

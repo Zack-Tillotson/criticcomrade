@@ -1,0 +1,22 @@
+<?php
+    $ur = $GLOBALS['ur'];
+    $type = $GLOBALS['type'];
+?>
+                            <div class="score-line <?php print $ur->getScore() >= 7 ? 'good-color' : 'bad-color'; ?>"><?php print $ur->getScore(); ?></div>
+<?php
+    if($type != "user")
+    {
+?>                            
+                            <div class="name-line"><?php print $ur->getUserName(); ?></div>
+<?php
+    }
+    
+    if($type != "movie")
+    {
+?>
+                            <div class="name-line"><a href="/movies/id/<?php print $ur->getMovieID(); ?>/"><?php print $ur->getTitle(); ?></a></div>
+<?php
+    }
+?>
+                            <div class="summary-line"><?php print $ur->getSummary(); ?></div>
+                            <div class="etc-line"><span class="date"><?php print $ur->getReviewDate(); ?></span></div>

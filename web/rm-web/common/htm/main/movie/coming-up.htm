@@ -1,0 +1,6 @@
+            <h1>Movies Coming Up</h1>
+<?php
+    $url = $GLOBALS['RM_API_LOC'] . '/movies/coming-up/sid/' . session_id() . '/?order-by=opening&count=100000';
+    $ml = new MovieList(xml2ary(getRESTXML($url)));
+    print_movie_list($ml, "pictary");
+?>

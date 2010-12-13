@@ -1,0 +1,17 @@
+#center-content-section {
+    clear: both;
+}
+
+#left-sidebar-section {
+    left: 210px;
+    margin-top: 20px;
+}
+
+#account-bar {
+    margin-top: -28px;
+    margin-right: 5px;
+}
+
+#right-sidebar-section {
+    margin-top: 15px;
+}

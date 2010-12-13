@@ -1,0 +1,159 @@
+            <h1>Search Critic Comrade</h1>
+<?php
+    include_form('search_short.htm');
+
+    if(sizeof($GLOBALS['RM_REQ']['URI']) == 4 && $GLOBALS['RM_REQ']['URI'][2] != "")
+    {
+
+        $search_params = "?";
+        if($_GET['movie-titles'] == "true") $search_params .= "search-movie-titles=true&";
+        if($_GET['critic-names'] == "true") $search_params .= "search-critic-names=true&";
+        if($_GET['critic-pubs'] == "true") $search_params .= "search-critic-publishers=true&";
+
+        // Do the search
+        $url = $GLOBALS['RM_API_LOC'] . '/search/' . urlencode($GLOBALS['RM_REQ']['URI'][2]) . '/sid/' . session_id() . '/' . $search_params . 'order-by=shortest-term&count=2000';
+        $srl = new SearchResultList(xml2ary(getRESTXML($url)));
+
+        // Show the results
+?>
+        <h2>Results</h2>
+<?php
+        if($_GET['movie-titles'] == "true" || ($_GET['movie-titles'] != "true" && $_GET['critic-names'] != "true" && $_GET['critic-pubs'] != "true"))
+        {
+?>
+        <h3>Movies</h3>
+        <table style="width: 100%">
+            <tbody>
+<?php
+            $hasOne = false;
+            foreach($srl->getSearchResults() as $sr)
+            {
+
+                if($sr->getResultType() != "Movie") continue;
+
+                $hasOne = true;
+                $result = $sr->getResult();
+?>
+                <tr style="border: solid 1px black; width: 100%">
+                    <td><img class="snuggle-left" src="/common/img/movie/<?php print (image_exists('/movie/' . $result->getMovieID() . '_poster.jpg') ? $result->getMovieID() : 'empty'); ?>_poster.jpg" alt="poster" width="52" height="80" /></td>
+                    <td>
+                        <table>
+                            <tr>
+                                <td>Title</td>
+                                <td><a href="/movies/id/<?php print $result->getMovieID(); ?>/"><?php print $result->getTitle(); ?></a></td>
+                                <td>Stats</td>
+                                <td rowspan="2">
+                                    <table>
+                                        <tr>
+                                            <td>Review Count</td>
+                                            <td><?php print intval($result->getCriticReviewList()->getReviewCount()); ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Avg Score</td>
+                                            <td><?php print intval(100*$result->getCriticReviewList()->getPositiveReviewCount()/$result->getCriticReviewList()->getReviewCount()); ?>%</td>
+                                        </tr>
+                                        <tr>
+                                            <td>CCCP Score</td>
+                                            <td><?php print intval(100*$result->getCriticReviewList()->getComradeScore()); ?>%</td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Release Date:</td>
+                                <td><?php print $result->getReleaseDate(); ?></td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+<?php
+            }
+
+            if(!$hasOne)
+            {
+?>
+                <tr style="border: solid 1px black; width: 100%">
+                    <td>No matching results</td>
+                </tr>
+<?php
+            }
+?>
+            </tbody>
+        </table>
+<?php
+        }
+
+        if($_GET['critic-names'] == "true" || $_GET['critic-pubs'] == "true" || ($_GET['movie-titles'] != "true" && $_GET['critic-names'] != "true" && $_GET['critic-pubs'] != "true"))
+        {
+?>
+        <h3>Critics</h3>
+        <table style="width: 100%">
+            <tbody>
+<?php
+            $hasOne = false;
+            foreach($srl->getSearchResults() as $sr)
+            {
+
+                if($sr->getResultType() != "Critic") continue;
+
+                $hasOne = true;
+                $result = $sr->getResult();
+?>
+                <tr style="border: solid 1px black; width: 100%">
+                    <td>
+                        <table>
+                            <tr>
+                                <th rowspan="2">Critic</th>
+                                <td>Name</td>
+                                <td><a href="/critics/id/<?php print $result->getCriticID(); ?>/"><?php print $result->getName(); ?></a></td>
+                                <td>Stats</td>
+                                <td rowspan="2">
+                                    <table>
+                                        <tr>
+                                            <td>Review Count</td>
+                                            <td><?php print $result->getReviewList()->getReviewCount(); ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Comradery</td>
+                                            <td><?php print intval($result->getComradery()) == -1 ? "-" : intval($result->getComradery()); ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Intersecting Count</td>
+                                            <td><?php print intval($result->getReviewList()->getComradeIntersectCount()); ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Same Count</td>
+                                            <td><?php print intval($result->getReviewList()->getComradeAgreeCount()); ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Different Count</td>
+                                            <td><?php print $result->getReviewList()->getComradeIntersectCount() - $result->getReviewList()->getComradeAgreeCount(); ?></td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Publisher</td>
+                                <td><?php print $result->getPublisher(); ?></td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+<?php
+            }
+
+            if(!$hasOne)
+            {
+?>
+                <tr style="border: solid 1px black; width: 100%">
+                    <td>No matching results</td>
+                </tr>
+<?php
+            }
+?>
+            </tbody>
+        </table>
+<?php
+        }
+    }
+?>

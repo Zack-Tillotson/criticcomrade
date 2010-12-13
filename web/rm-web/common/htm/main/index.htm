@@ -1,0 +1,36 @@
+<?php
+    $userInfo = $GLOBALS['CC_API']['SESSION_DITTY'];
+    if($userInfo->isGuest())
+    {
+?>
+            <h1>Movie Critics Suck</h1>
+            <p class="bold">
+                Stop watching bad movies |
+                Find smart critics |
+                Save money
+            </p>
+            <p><span class="bold">Most movie critics are terrible.</span> There are a ton of critics in the world and they all have different reviews for movies. How can you decide which ones to listen to?</p>
+            <p><span class="bold">We'll find the critics who agree with you.</span> You review movies and we find the critics who agree with you. Then you can see what they have to say about upcoming movies you're interested in.</p>
+            <p>
+                <span class="bold">It's easy:</span>
+                <ol>
+                    <li>Review Movies</li>
+                    <li>We'll find which critics agree with you the most</li>
+                    <li>See what these "Comrades" have to say about upcoming movies</li>
+                </ol>
+            </p>
+            <div id="start-here"><a href="/users/tutorial/step-1/"><img src="/common/img/start-here.png" alt="Start Here" /></a></div>
+<?php
+    }
+    else if($userInfo->isTemporary() || $userInfo->isReal())
+    {
+?>
+            <h1>Welcome Back to Critic Comrade</h1>
+            <p>Have a suggestion for the site? CC wants to hear! <a href="mailto:CriticComrade@gmail.com">Email</a> us here.</p>
+            <div id="quick-movie-cloud">
+                <h3>Today's Hot Movies</h3>
+<?php include_piece('reviews-cloud.htm'); ?>
+            </div>
+<?php
+    }
+?>

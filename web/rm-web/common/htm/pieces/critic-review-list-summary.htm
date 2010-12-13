@@ -1,0 +1,106 @@
+<?php
+    $m = $GLOBALS['m'];
+    $crl = $m->getCriticReviewList();
+?>
+            <div class="somewhat-bigger center">What the Critics Say</div>
+            <table class="full-page" id="critic-review-summaries">
+                <thead>
+                    <tr>
+                        <td class="half-page bigger center">The Good</td>
+                        <td class="half-page bigger center">The Bad</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="reviews-box-links left-col">
+<?php
+    foreach($crl->getReviews() as $cr)
+    {
+
+        if($cr->getScore() == 1)
+        {
+?>
+                                        <a href="/critics/id/<?php print $cr->getCriticID(); ?>/reviews/<?php print $cr->getMovieID(); ?>/"><img src="/common/img/green-link-box.png" width="12" height="12" /></a>
+<?php
+        }
+        
+    }
+?>
+                        </td>
+                        <td class="reviews-box-links">
+<?php
+    foreach($crl->getReviews() as $cr)
+    {
+
+        if($cr->getScore() == 0)
+        {
+?>
+                            <a href="/critics/id/<?php print $cr->getCriticID(); ?>/reviews/<?php print $cr->getMovieID(); ?>/"><img src="/common/img/red-link-box.png" width="12" height="12" /></a>
+<?php
+        }
+
+    }
+?>
+                        </td>
+                    </tr>
+<?php
+    // Will print the reviews in 2 columns
+    $page = isset($GLOBALS['RM_REQ']['PARAMS']['page']) ? $GLOBALS['RM_REQ']['PARAMS']['page'] : 1;
+    if($page < 1 || $page > 9999) $page = 1;
+
+    $page_size = 5;
+
+    $offset = ($page - 1) * $page_size;
+
+    for($r = 1 ; $r <= $page_size ; $r++)
+    {
+?>
+                    <tr>
+                        <td class="left-col single-review">
+<?php
+        $i = 0;
+        foreach($crl->getReviews() as $cr)
+        {
+
+            if($cr->getScore() == 1)
+            {
+                $i++;
+                if($i == $r)
+                {
+                    print_critic_review($cr, "movie");
+                    break;
+                }
+                
+            }
+
+        }
+?>
+                        </td>
+                        <td class="single-review">
+<?php
+        $i = 0;
+        foreach($crl->getReviews() as $cr)
+        {
+
+            if($cr->getScore() == 0)
+            {
+                $i++;
+                if($i == $r)
+                {
+                    print_critic_review($cr, "movie");
+                    break;
+                }
+            }
+
+        }
+?>
+                        </td>
+                    </tr>
+<?php
+    }
+?>
+                </tbody>
+            </table>
+            <div class="bigger center">
+                <a href="/movies/id/<?php print $GLOBALS['RM_REQ']['URI'][3]; ?>/reviews/">The rest of the reviews</a>
+            </div>

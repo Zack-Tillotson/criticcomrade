@@ -1,0 +1,21 @@
+<?php
+    $url = $GLOBALS['RM_API_LOC'] . '/sessions/id/' . session_id() . '/?type=full';
+    $userInfo = new PersonalUser(xml2ary(getRESTXML($url)));
+
+    if($userInfo->isGuest())
+    {
+?>
+            <h1>My Reviews</h1>
+            <p>This section needs to know what user you are.</p>
+<?php
+            include 'common/htm/form/login.htm';
+            return 1;
+    }
+    else
+    {
+?>
+            <h1>My Reviews</h1>
+<?php
+        print_user_review_list($userInfo->getReviews(), "full");
+    }
+?>

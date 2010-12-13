@@ -1,0 +1,35 @@
+<?php
+    $m = $GLOBALS['m'];
+    $crl = $m->getCriticReviewList();
+?>
+            <h2><?php print $m->getTitle(); ?> Reviews</h2>
+            <table class="full-page" id="critic-review-summaries">
+                <tbody>
+                    <tr>
+                        <td class="reviews-box-links">
+<?php
+    foreach($crl->getReviews() as $cr)
+    {
+?>
+                                        <a href="/critics/id/<?php print $cr->getCriticID(); ?>/reviews/<?php print $cr->getMovieID(); ?>/"><img src="/common/img/<?php print ($cr->getScore() == 1) ? 'green' : 'red'; ?>-link-box.png" width="12" height="12" /></a>
+<?php
+    }
+?>
+                        </td>
+                    </tr>
+<?php
+    foreach($crl->getReviews() as $cr)
+    {
+?>
+                    <tr>
+                        <td class="single-review">
+<?php
+        print_critic_review($cr, "movie");
+?>
+                        </td>
+                    </tr>
+<?php
+    }
+?>
+                </tbody>
+            </table>

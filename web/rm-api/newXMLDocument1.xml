@@ -1,0 +1,104 @@
+<?xml version="1.0" standalone="yes"?>
+<user-stats-summary>
+    <user-stats>
+        <user-count>14</user-count>
+        <user-count-last-week>0</user-count-last-week>
+        <review-count>130</review-count>
+        <review-count-last-week>0</review-count-last-week>
+        <most-reviewed-current-movie>
+            <id>2008-madagascar-escape-2-africa</id>
+            <title>Madagascar: Escape 2 Africa</title>
+            <review-count>1</review-count>
+            <positive-review-count>1</positive-review-count>
+        </most-reviewed-current-movie>
+    </user-stats>
+    <latest-review-list>
+        <latest-review>
+            <user-ditty>
+                <user-name>ninja</user-name>
+                <create_date>Apr 08, 2009</create_date>
+                <number-reviews></number-reviews>
+                <number-positive-reviews></number-positive-reviews>
+                <review-list>
+                    <review>
+                        <id>2009-adventureland</id>
+                        <title>Adventureland</title>
+                        <score>5</score>
+                        <summary></summary>
+                        <review-date>Apr 08, 2009</review-date>
+                    </review>
+                </review-list>
+            </user-ditty>
+        </latest-review>
+        <latest-review>
+            <user-ditty>
+                <user-name>nimda</user-name>
+                <create_date>Mar 16, 2009</create_date>
+                <number-reviews></number-reviews>
+                <number-positive-reviews></number-positive-reviews>
+                <review-list>
+                    <review>
+                        <id>2009-fast--furious</id>
+                        <title>Fast &amp; Furious</title>
+                        <score>9</score>
+                        <summary>Yay Vin :)</summary>
+                        <review-date>Apr 06, 2009</review-date>
+                    </review>
+                </review-list>
+            </user-ditty>
+        </latest-review>
+        <latest-review>
+            <user-ditty>
+                <user-name>chloe</user-name>
+                <create_date>Mar 31, 2009</create_date>
+                <number-reviews></number-reviews>
+                <number-positive-reviews></number-positive-reviews>
+                <review-list>
+                    <review>
+                        <id>2008-burn-after-reading</id>
+                        <title>Burn After Reading</title>
+                        <score>4</score>
+                        <summary></summary>
+                        <review-date>Mar 31, 2009</review-date>
+                    </review>
+                </review-list>
+            </user-ditty>
+        </latest-review>
+        <latest-review>
+            <user-ditty>
+                <user-name>hockeyhead</user-name>
+                <create_date>Mar 21, 2009</create_date>
+                <number-reviews></number-reviews>
+                <number-positive-reviews></number-positive-reviews>
+                <review-list>
+                    <review>
+                        <id>2008-high-school-musical-3-senior-year</id>
+                        <title>High School Musical 3: Senior Year</title>
+                        <score>1</score>
+                        <summary></summary>
+                        <review-date>Mar 26, 2009</review-date>
+                    </review>
+                </review-list>
+            </user-ditty>
+        </latest-review>
+        <latest-review>
+            <user-ditty>
+                <user-name></user-name>
+                <create_date>Mar 26, 2009</create_date>
+                <number-reviews></number-reviews>
+                <number-positive-reviews></number-positive-reviews>
+                <review-list>
+                    <review>
+                        <id>2008-twilight</id>
+                        <title>Twilight</title>
+                        <score>3</score>
+                        <summary></summary>
+                        <review-date>Mar 26, 2009</review-date>
+                    </review>
+                </review-list>
+            </user-ditty>
+        </latest-review>
+    </latest-review-list>
+    <popular-movie-list></popular-movie-list>
+</user-stats-summary>
+

@@ -1,0 +1,21 @@
+DEBUG [main] (MovieDAO.java:896) - checking authentication: com.mysql.jdbc.JDBC4PreparedStatement@c53dce: select 'true' is_authentic from users where user_name = 'test' and password = 'testtest'
+DEBUG [main] (MovieDAO.java:903) - returning true (is_authentic = true)
+DEBUG [main] (MovieDAO.java:896) - checking authentication: com.mysql.jdbc.JDBC4PreparedStatement@1b26af3: select 'true' is_authentic from users where user_name = 'test' and password = 'notreal'
+DEBUG [main] (MovieDAO.java:934) - checking is user new : com.mysql.jdbc.JDBC4PreparedStatement@82701e: select ifnull((select user_id from users where user_name = 'test'), 'true') is_new;
+DEBUG [main] (MovieDAO.java:938) - returning: false
+DEBUG [main] (MovieDAO.java:965) - starting to add user
+DEBUG [main] (MovieDAO.java:980) - check for query: com.mysql.jdbc.JDBC4PreparedStatement@998b08: select 'true' exist from users where user_name = 'testesttest'
+DEBUG [main] (MovieDAO.java:1028) - this is a new user
+DEBUG [main] (MovieDAO.java:1088) - error adding user - java.lang.NullPointerException
+DEBUG [main] (MovieDAO.java:1092) - done with adding user - went well? false
+DEBUG [main] (MovieDAO.java:896) - checking authentication: com.mysql.jdbc.JDBC4PreparedStatement@e3b895: select 'true' is_authentic from users where user_name = 'test' and password = 'testtest'
+DEBUG [main] (MovieDAO.java:903) - returning true
+DEBUG [main] (MovieDAO.java:896) - checking authentication: com.mysql.jdbc.JDBC4PreparedStatement@5e3974: select 'true' is_authentic from users where user_name = 'test' and password = 'notreal'
+DEBUG [main] (MovieDAO.java:903) - returning true
+DEBUG [main] (MovieDAO.java:933) - checking is user new : com.mysql.jdbc.JDBC4PreparedStatement@aeffdf: select ifnull((select user_id from users where user_name = 'test'), 'true') is_new;
+DEBUG [main] (MovieDAO.java:937) - returning: true
+DEBUG [main] (MovieDAO.java:962) - starting to add user
+DEBUG [main] (MovieDAO.java:977) - check for query: com.mysql.jdbc.JDBC4PreparedStatement@16b13c7: select 'true' exist from users where user_name = 'testesttest'
+DEBUG [main] (MovieDAO.java:1025) - this is a new user
+DEBUG [main] (MovieDAO.java:1085) - error adding user - java.lang.NullPointerException
+DEBUG [main] (MovieDAO.java:1089) - done with adding user - went well? false

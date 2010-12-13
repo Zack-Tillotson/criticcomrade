@@ -1,0 +1,84 @@
+body {
+    min-width: 1000px;
+    margin: 0 auto;
+}
+
+/*
+ * the page header
+ */
+
+#top-bar {
+    margin-top: 5px;
+    height: 81px;
+    padding-top: 3px;
+}
+
+#account-bar {
+    font-size: 12px;
+    margin: 55px 5px 0px 0px;
+    float: right;
+}
+
+#account-bar form {
+    display: inline;
+}
+
+#top-bar #page-title #page-logo {
+    margin-left: 50px;
+}
+
+#section-tabs {
+    margin-top: 10px;
+    margin-bottom: 5px;
+    width: 100%;
+    margin-top: 13px;
+}
+
+#section-tabs span.wide {
+    margin-left: 10px;
+}
+
+/*
+ * The center sections
+ */
+
+#content-container {
+    padding-left: 265px;   /* LC width */
+    padding-right: 215px;  /* RC width */
+}
+
+#content-container .column {
+  position: relative;
+  float: left;
+  margin-bottom: 5px;
+}
+
+#center-content-section {
+    width: 100%;
+}
+
+#left-sidebar-section {  
+    width: 250px;
+    right: 270px;
+    padding-right: 5px;
+    padding-left: 10px;
+    margin-left: -100%;
+}
+
+#right-sidebar-section {
+    width: 200px;
+    margin-right: -316px;
+    margin-left: 5px;
+    padding-left: 5px;
+}
+
+/*
+ * Footer section
+ */
+
+#footer-section {
+    clear: both;
+    width: 100%;
+    text-align: right;
+    padding-top: 5px;
+}

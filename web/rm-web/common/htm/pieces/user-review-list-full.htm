@@ -1,0 +1,33 @@
+<?php
+    $rl = $GLOBALS['url'];
+?>
+            <table class="full-page" id="critic-review-summaries">
+                <tbody>
+                    <tr>
+                        <td class="reviews-box-links">
+<?php
+    foreach($rl->getReviews() as $r)
+    {
+?>
+                                        <a href="/users/my/reviews/<?php print $r->getMovieID(); ?>/"><img src="/common/img/<?php print ($r->getScore() >= 7) ? 'green' : 'red'; ?>-link-box.png" width="12" height="12" /></a>
+<?php
+    }
+?>
+                        </td>
+                    </tr>
+<?php
+    foreach($rl->getReviews() as $r)
+    {
+?>
+                    <tr>
+                        <td class="single-review">
+<?php
+        print_user_review($r, "user");
+?>
+                        </td>
+                    </tr>
+<?php
+    }
+?>
+                </tbody>
+            </table>

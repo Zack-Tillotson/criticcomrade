@@ -1,0 +1,43 @@
+<?php
+    $cl = $GLOBALS['cl'];
+    $userInfo = $GLOBALS['CC_API']['SESSION_DITTY'];
+?>
+                <table class="space-it">
+                    <thead>
+                        <tr>
+                            <td class="bold">Critic</td>
+<?php
+    if($userInfo->isTemporary() || $userInfo->isReal())
+    {
+?>
+                            <td class="bold tiny">Agreeing Reviews</td>
+<?php
+    }
+?>
+                            <td class="bold tiny">Number Reviews</td>
+                            <td class="bold smaller">Positive</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+<?php
+    foreach($cl->getCritics() as $c)
+    {
+?>
+                        <tr>
+                            <td class="full-title-col"><a href="/critics/id/<?php print $c->getCriticID(); ?>/"><?php print $c->getNameAndPublisher(); ?></a></td>
+<?php
+    if($userInfo->isTemporary() || $userInfo->isReal())
+    {
+?>
+                            <td class="full-count-col"><?php print $c->getReviewList()->getComradeAgreeCount(); ?>/<?php print $c->getReviewList()->getComradeIntersectCount(); ?></td>
+<?php
+    }
+?>
+                            <td class="full-count-col"><?php print $c->getReviewList()->getReviewCount(); ?></td>
+                            <td class="full-count-col"><?php print intval(100*$c->getReviewList()->getPositiveReviewCount()/$c->getReviewList()->getReviewCount()); ?>%</td>
+                        </tr>
+<?php
+    }
+?>
+                    </tbody>
+                </table>

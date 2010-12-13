@@ -1,0 +1,24 @@
+            <h1>Movies</h1>
+            <div>
+                <a href="/movies/id/">Full Movie List</a>
+            </div>
+            <h2>All Time Most Popular</h2>
+<?php
+    $url = $GLOBALS['RM_API_LOC'] . '/movies/all/sid/' . session_id() . '/?order-by=total-critic-reviews&count=10';
+    $ml = new MovieList(xml2ary(getRESTXML($url)));
+    print_movie_list($ml, "dittary");
+?>
+            <h2>Today's Featured Movie</h2>
+<?php
+
+    // Set the rand to a seed based on the day, not the hour, and then set it back
+    srand(date('j'));
+    $offset = rand(0, 100);
+    srand(date('G'));
+    
+    $url = $GLOBALS['RM_API_LOC'] . '/movies/all/sid/' . session_id() . '/?type=summary&count=1&order-by=total-critic-reviews&offset=' . $offset;    
+    $ml = new MovieList(xml2ary(getRESTXML($url)));
+    $m = $ml->getMovies();
+
+    print_movie($m[0], "summary");
+?>

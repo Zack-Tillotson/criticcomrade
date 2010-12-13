@@ -1,0 +1,16 @@
+<?php
+    $userInfo = $GLOBALS['CC_API']['SESSION_DITTY'];
+?>
+            <h1>Tutorial - Step 1</h1>
+            <div>
+                <img src="/common/img/tutorial-step-1.png" width="450" height="150" alt="On step 1 of 3" />
+            </div>
+            <p>
+                To get started we need you to tell us what movies you like and which you dislike.
+                Here are 50 of the most popular movies. Rate as many of these as you can and hit "submit" at the bottom.
+            </p>
+<?php
+    $form_max_movies = 50;
+    $form_is_tutorial = true;
+    include 'common/htm/form/quick_rate.htm';
+?>

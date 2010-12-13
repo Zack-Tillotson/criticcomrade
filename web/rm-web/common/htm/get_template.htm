@@ -1,0 +1,45 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd"> 
+<html>
+    <head>
+<?php   gen_header(); ?>
+    </head>
+    <body>
+        <div id="title-bar-section">
+<?php       gen_title(); ?>
+        </div>
+        <div id="content-container">
+            <div id="center-content-section" class="column">
+                <div id="section-tabs">
+                    <span class="wide"><a href="/">Home</a></span><span class="wide">|</span>
+                    <span class="wide"><a href="/movies/opening/">Opening</a></span><span class="wide">|</span>
+                    <span class="wide"><a href="/movies/in-theaters/">In Theaters</a></span><span class="wide">|</span>
+                    <span class="wide"><a href="/movies/coming-up/">Coming Up</a></span><span class="wide">|</span>
+                    <span class="wide"><a href="/movies/">More Movies</a></span><span class="wide">|</span>
+                    <span class="wide"><a href="/critics/">Critics</a></span><span class="wide">|</span>
+                    <span class="wide"><a href="/about/">About</a></span><span class="wide">|</span>
+                    <span class="wide"><a href="/faq/">FAQ</a></span>
+                </div>
+<?php           gen_main_section(); ?>
+            </div>
+            <div id="left-sidebar-section" class="column">
+<?php           gen_left_sidebar(); ?>
+            </div>
+            <div id="right-sidebar-section" class="column">
+<?php           gen_right_sidebar(); ?>
+            </div>
+        </div>
+        <div id="footer-section">
+<?php       gen_footer(); ?>
+        </div>
+<?php
+    if(isset($GLOBALS['RM_REQ']['PARAMS']['opto']) && $GLOBALS['RM_REQ']['PARAMS']['opto'] == "true")
+    {
+?>
+        <div>
+            <?php print_r($GLOBALS['API_CALLS']); ?>
+        </div>
+<?php
+    }
+?>
+    </body>
+</html>

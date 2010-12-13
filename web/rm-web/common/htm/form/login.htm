@@ -1,0 +1,40 @@
+        <div class="title">Log In</div>
+        <div id="login-section">
+<?php
+    $userInfo = $GLOBALS['CC_API']['SESSION_DITTY'];
+    
+    if($userInfo->isReal())
+    {
+?>
+            <p>You are already logged in.</p>
+            <form action="/form/logout/" method="post">
+                <input type="hidden" name="ref" value="<?php print $_SERVER['HTTP_REFERER']; ?>"></input>
+                <input type="submit" value="Logout"></input>
+            </form>
+<?php
+    }
+    else
+    {
+?>
+            <form action="/form/login/" method="post">
+                <input type="hidden" name="ref" value="<?php print isset($_REQUEST['inref'])?$_REQUEST['inref']:$_SERVER['HTTP_REFERER']; ?>"></input>
+                <table>
+                    <tr>
+                        <td><label for="username">Username:</label></td>
+                        <td><input type="text" name="username" maxlength="12"<?php if($_REQUEST['inuser'] != '') print ' value="' . $_REQUEST['inuser'] . '"'; ?>></input></td>
+                    </tr>
+                    <tr>
+                        <td><label for="password">Password:</label></td>
+                        <td><input type="password" name="password" maxlength="25"></input></td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" name="rememberme">Remember Me</input></td>
+                        <td><input type="submit" value="Submit"></input></td>
+                    </tr>
+                </table>
+            </form>
+            <p>Don't have an account? <a href="/users/new-user/">Get one easy</a> - no info required :)</p>
+<?php
+    }
+?>
+        </div>

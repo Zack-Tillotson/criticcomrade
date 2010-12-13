@@ -1,0 +1,10 @@
+<?php
+
+    $mid = $GLOBALS['RM_REQ']['URI'][3];
+
+    $url = $GLOBALS['RM_API_LOC'] . '/movies/id/' . $mid . '/sid/' . session_id() . '/';
+    $ml = new Movie(xml2ary(getRESTXML($url)));
+
+    print_critic_reviews($ml, "full");
+    
+?>

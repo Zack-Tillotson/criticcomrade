@@ -1,0 +1,24 @@
+            <h1>Critics</h1>
+            <div>
+                <a href="/critics/id/">Full Critic List</a>
+            </div>
+            <h2>All Time Most Active Critics</h2>
+<?php
+    $url = $GLOBALS['RM_API_LOC'] . '/critics/all/sid/' . session_id() . '/?order-by=review-count&count=10';
+    $ml = new CriticList(xml2ary(getRESTXML($url)));
+    print_critic_list($ml, "dittary");
+?>
+            <h2>Today's Featured Critic</h2>
+<?php
+
+    // Set the rand to a seed based on the day, not the hour, and then set it back
+    srand(date('j'));
+    $offset = rand(0, 100);
+    srand(date('G'));
+    
+    $url = $GLOBALS['RM_API_LOC'] . '/critics/all/sid/' . session_id() . '/?type=summary&count=1&order-by=review-count&offset=' . $offset;
+    $cl = new CriticList(xml2ary(getRESTXML($url)));
+    $c = $cl->getCritics();
+
+    print_critic($c[0], "summary");
+?>

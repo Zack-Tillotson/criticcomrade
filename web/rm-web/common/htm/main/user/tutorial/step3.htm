@@ -1,0 +1,42 @@
+<?php
+    $userInfo = $GLOBALS['CC_API']['SESSION_DITTY'];
+
+    $url = $GLOBALS['RM_API_LOC'] . '/movies/top-box-office/sid/' . session_id() . '/?type=ditty&count=1&order-by=rank';
+    $rml = new MovieList(xml2ary(getRESTXML($url)));
+
+    $mov = $rml->getMovies();
+    $mov = $mov[0];
+
+    $mid = $mov->getMovieID();
+    $title = $mov->getTitle();
+    
+?>
+            <h1>Tutorial - Step 3</h1>
+            <div>
+                <img src="/common/img/tutorial-step-3.png" width="450" height="150" alt="On step 3 of 3" />
+            </div>
+            <h2>Movie Suggestion</h2>
+            <p>
+                Here is the most popular movie in theaters this week, <em><?php print $title; ?></em>. There are 2 main
+                pieces of information to look at, the average critic score and the CCCP suggestion.
+            </p>
+            <p>
+                The average critic score is just the percentage of critics who liked the movie. Other sites, like Rotten
+                Tomatoes and Metacritic simply give you this number. Critic Comrade goes a step beyond that by giving you
+                the CCCP suggestion (<b>C</b>ritic<b>C</b>omrade.<b>C</b>om <b>P</b>ersonalized Suggestion). This is the personal suggestion our site has calculated for you based on what you
+                have told us about what movies you like and the reviews of all the critics.
+            </p>
+            <p class="bold bottom-spacer">
+                The CCCP suggestion is a quick, easy, and accurate way of deciding if a movie is worth watching!
+            </p>
+<?php
+    
+    $url = $GLOBALS['RM_API_LOC'] . '/movies/id/' . $mid . '/sid/' . session_id() . '/';
+    $ml = new Movie(xml2ary(getRESTXML($url)));
+
+    print_movie($ml, "summary");
+    
+?>
+            <p class="new-line top-spacer">
+                That's it! It's not super complicated, just super helpful. <b><a href="/users/new-user/">Create an account!</a></b> to have your reviews saved for next time.
+            </p>

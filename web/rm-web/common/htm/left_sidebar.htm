@@ -1,0 +1,141 @@
+            <div id="quick-movie-list">
+                <div id="quick-opening-movies">
+                    <h2><a class="sneaky-link" href="/movies/opening/">Opening</a></h2>
+<?php 
+    $url = $GLOBALS['RM_API_LOC'] . '/movies/opening/sid/' . session_id() . '/?type=ditty&count=6&order-by=total-critic-reviews';
+    $rml = new MovieList(xml2ary(getRESTXML($url)));
+?>
+                    <table>
+                        <thead>
+                            <tr class="titles">
+                                <td class="suggestion-col"><a href="/faq/#cccp-suggestion"><img src="/common/img/info.png" alt="suggestion-help" width="10" height="10" /></a></td>
+                                <td class="title-col">Title</td>
+                                <td class="center" colspan="2">Reviews</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+<?php
+    foreach($rml->getMovies() as $mov)
+    {
+        switch($mov->getCriticReviewList()->getComradeSuggestion())
+        {
+            case -2:
+                $cc_img = "suggestion-bad-2.png";
+                break;
+            case -1:
+                $cc_img = "suggestion-bad-1.png";
+                break;
+            case 1:
+                $cc_img = "suggestion-good-1.png";
+                break;
+            case 2:
+                $cc_img = "suggestion-good-2.png";
+                break;
+            default:
+                $cc_img = "suggestion-none.png";
+                break;
+        }
+?>
+                            <tr>
+                                <td class="suggestion-col"><img src="/common/img/<?php print $cc_img; ?>" height="12" width="12" alt="<?php print $cc_img; ?>" /></td>
+                                <td class="title-col"><a href="/movies/id/<?php print $mov->getMovieID(); ?>/"><?php print substr($mov->getTitle(), 0, 20); if(strlen($mov->getTitle()) > 20) print "..."; ?></a></td>
+                                <td class="percent-col"><?php print intval(100 * $mov->getCriticReviewList()->getPositiveReviewCount() / $mov->getCriticReviewList()->getReviewCount()); ?>%</td>
+                                <td class="count-col blurred">(<?php print $mov->getCriticReviewList()->getPositiveReviewCount() . "/" . $mov->getCriticReviewList()->getReviewCount(); ?>)</td>
+                            </tr>
+<?php
+    }
+?>
+                        </tbody>
+                    </table>
+                </div>
+                <div id="quick-popular-movies">
+                    <h2><a class="sneaky-link" href="/movies/in-theaters/">In Theaters</a></h2>
+<?php
+    $url = $GLOBALS['RM_API_LOC'] . '/movies/top-box-office/sid/' . session_id() . '/?type=ditty&count=6&order-by=rank';
+    $rml = new MovieList(xml2ary(getRESTXML($url)));
+?>
+                    <table>
+                        <thead>
+                            <tr class="titles">
+                                <td class="suggestion-col"><a href="/faq/#cccp-suggestion"><img src="/common/img/info.png" alt="suggestion-help" width="10" height="10" /></a></td>
+                                <td class="title-col">Title</td>
+                                <td class="center" colspan="2">Reviews</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+<?php
+    foreach($rml->getMovies() as $mov)
+    {
+
+        switch($mov->getCriticReviewList()->getComradeSuggestion())
+        {
+            case -2:
+                $cc_img = "suggestion-bad-2.png";
+                break;
+            case -1:
+                $cc_img = "suggestion-bad-1.png";
+                break;
+            case 1:
+                $cc_img = "suggestion-good-1.png";
+                break;
+            case 2:
+                $cc_img = "suggestion-good-2.png";
+                break;
+            default:
+                $cc_img = "suggestion-none.png";
+                break;
+        }
+
+        $cc_per = intval(100 * $mov->getCriticReviewList()->getComradeScore());
+        $cc_color = ($mov->getCriticReviewList()->getComradeCount() < 5) ? "invis" :
+                    (($cc_per >= 75) ? "good-color" :
+                    (($cc_per >= 55) ? "ok-color" :
+                    "bad-color"));
+?>
+                            <tr>
+                                <td class="suggestion-col"><img src="/common/img/<?php print $cc_img; ?>" height="12" width="12" alt="<?php print $cc_img; ?>" /></td>
+                                <td class="title-col"><a href="/movies/id/<?php print $mov->getMovieID(); ?>/"><?php print substr($mov->getTitle(), 0, 20); if(strlen($mov->getTitle()) > 20) print "..."; ?></a></td>
+                                <td class="percent-col"><?php print intval(100 * $mov->getCriticReviewList()->getPositiveReviewCount() / $mov->getCriticReviewList()->getReviewCount()); ?>%</td>
+                                <td class="count-col blurred">(<?php print $mov->getCriticReviewList()->getPositiveReviewCount() . "/" . $mov->getCriticReviewList()->getReviewCount(); ?>)</td>
+                            </tr>
+<?php
+    }
+?>
+                        </tbody>
+                    </table>
+                </div>
+                <div id="quick-upcoming-movies">
+                    <h2><a class="sneaky-link" href="/movies/coming-up/">Coming Up</a></h2>
+<?php
+    $url = $GLOBALS['RM_API_LOC'] . '/movies/coming-up/sid/' . session_id() . '/?type=ditty&count=15&order-by=opening';
+    $rml = new MovieList(xml2ary(getRESTXML($url)));
+?>
+                    <table class="full-width">
+                        <thead>
+                            <tr>
+                                <td class="short-date-col"></td>
+                                <td class="short-title-col"></td>
+                            </tr>
+                        </thead>
+                        <tbody>
+<?php
+    $prev_date = "";
+    $skip = true;
+    foreach($rml->getMovies() as $mov)
+    {
+        $release_date = date('M j', strtotime($mov->getReleaseDate()));
+        if($prev_date == $release_date) $release_date = "";
+        else $prev_date = $release_date;
+?>
+                            <tr <?php if($release_date != "" && !$skip) print 'class="top-spacer"'; ?>>
+                                <td><?php print $release_date; ?></td>
+                                <td><a href="/movies/id/<?php print $mov->getMovieID(); ?>/"><?php print substr($mov->getTitle(), 0, 30); if(strlen($mov->getTitle()) > 30) print "..."; ?></a></td>
+                            </tr>
+<?php
+        $skip = false;
+    }
+?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>

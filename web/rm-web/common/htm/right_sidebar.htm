@@ -1,0 +1,153 @@
+<?php
+    include_form('search_ditty.htm');
+    $userInfo = $GLOBALS['CC_API']['SESSION_DITTY'];
+?>
+            <h2>Personal Section</h2>
+            <table class="small">
+                <tbody>
+<?php
+    if($userInfo->isReal())
+    {
+?>
+                    <tr>
+                        <td class="left-small">Username</td>
+                        <td class="right-small bold"><?php print db_get_username(); ?></td>
+                    </tr>
+<?php
+    }
+    else if($userInfo->isTemporary() || $userInfo->isGuest())
+    {
+?>
+                    <tr>
+                        <td class="left-small"><a href="/users/login/">Log In</a></td>
+                        <td class="right-small"><a href="/users/new-user/">Create Account</a></td>
+                    </tr>
+<?php
+    }
+?>
+                </tbody>
+            </table>
+            <div class="seperator"></div>
+<?php
+    if($userInfo->isGuest())
+    {
+?>
+            <p>Get suggestions for what movie to watch, just review movies you've seen.</p>
+            <p>It just takes a minute, <a href="/users/tutorial/step-1/">start now</a>!</p>
+<?php
+    }
+    else if($userInfo->isTemporary() || $userInfo->isReal())
+    {
+?>
+            
+            <div id="quick-my-section">
+                <div id="quick-my-profile">
+                    <span class="snuggle-right"><a href="/users/my/">more</a></span>
+                    <h3 class="same-line">Profile</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th class="key-col" />
+                                <th class="percent-col" />
+                                <th class="value-col" />
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="key-col">Total Reviews</td>
+                                <td class="percent-col" />
+                                <td class="value-col"><?php print $userInfo->getReviewCount();?></td>
+                            </tr>
+                            <tr>
+                                <td class="key-col">Positive</td>
+                                <td class="percent-col"><?php print number_format(round(100 * $userInfo->getPositiveReviewCount() / $userInfo->getReviewCount(), 0), 0); ?>%</td>
+                                <td class="value-col"><?php print $userInfo->getPositiveReviewCount();?></td>
+                            </tr>
+                            <tr>
+                                <td class="key-col">Recent</td>
+                                <td class="percent-col"><?php print number_format(round(100 * $userInfo->getRecentReviewCount() / $userInfo->getReviewCount(), 0), 0); ?>%</td>
+                                <td class="value-col"><?php print $userInfo->getRecentReviewCount();?></td>
+                            </tr>
+                        </tbody>
+                    </table>
+<?php
+        if($userInfo->getReviewCount() < 15)
+        {
+?>
+                    <p class="suggestion">
+                        Suggestion: <b>Review More Movies</b><br>
+                        Try this - <a href="/users/my/reviews/quick-rate/">Quick Rate</a> (<a href="/faq/#rate-more"><img src="/common/img/info.png" alt="quick rate question" width="10" height="10" /></a>)
+                    </p>
+<?php
+        }
+                
+        if($userInfo->isTemporary())
+        {
+?>
+                    <p class="suggestion">
+                        Suggestion: <b>Create An Account</b><br>
+                        Try this - <a href="/users/new-user/">New User</a>
+                    </p>
+<?php
+        }
+?>
+
+                <div class="seperator"></div>
+<?php
+        if($userInfo->getReviewCount() != 0)
+        {
+
+?>
+                </div>
+                <div id="quick-my-critics">
+                    <h3><a href="/faq/#best-critics"><img src="/common/img/info.png" alt="suggestion-help" width="10" height="10" /></a><a class="sneaky-link" href="/users/my/critics/">Your Best Critics</a></h3>
+                    <table class="critics">
+                        <thead>
+                            <tr>
+                                <td class="name-col">Critic</td>
+                                <td class="score-col">Agreeing Reviews</td>
+                            </tr>
+                        </thead>
+<?php
+            $url = $GLOBALS['RM_API_LOC'] . '/critics/all/sid/' . session_id() . '/?type=ditty&count=5&order-by=comrade';
+            $critics = new CriticList(xml2ary(getRESTXML($url)));
+
+            foreach($critics->getCritics() as $critic)
+            {
+
+                if($critic->getComradery() == -1) break;
+?>
+                        <tr>                            
+                            <td class="name-col border-top"><?php print $critic->getName(); ?></td>
+                            <td class="score-col border-top"><?php print $critic->getReviewList()->getComradeAgreeCount(); ?>/<?php print $critic->getReviewList()->getComradeIntersectCount(); ?></td>
+                        </tr>
+                        <tr>
+                            <td class="name-col"><?php print (strlen($critic->getPublisher()) > 20 ? substr($critic->getPublisher(), 0, 17) . "..." : $critic->getPublisher()); ?></td>
+                            <td class="score-col"><a href="/critics/id/<?php print $critic->getCriticID(); ?>/">more</a></td>
+                        </tr>
+<?php
+            }
+?>
+                        <tr>
+                            <td colspan="2" class="border-top"><a href="/users/my/critics/">More Critics</a></td>
+                        </tr>
+                    </table>
+<?php
+        }
+?>
+                </div>
+            </div>
+<?php
+    }
+
+    if($userInfo->isReal())
+    {
+?>
+            <div class="seperator"></div>
+            <form action="/form/logout/" method="post">
+                <input type="hidden" name="ref" value="<?php print $_SERVER['REQUEST_URI']; ?>"></input>
+                <input type="submit" value="Logout"></input>
+            </form>
+<?php
+    }
+?>

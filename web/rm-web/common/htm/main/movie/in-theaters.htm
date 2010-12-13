@@ -1,0 +1,14 @@
+            <h1>Movies In Theaters</h1>
+            <h2>Top Box Office</h2>
+<?php
+    $url = $GLOBALS['RM_API_LOC'] . '/movies/top-box-office/sid/' . session_id() . '/?order-by=rank&count=10';
+    $ml = new MovieList(xml2ary(getRESTXML($url)));
+    print_movie_list($ml, "pictary");
+?>
+            <h2>All Movies</h2>
+            <p>Released within the last 3 weeks</p>
+<?php
+    $url = $GLOBALS['RM_API_LOC'] . '/movies/in-theaters/sid/' . session_id() . '/?order-by=total-critic-reviews&count=1000';
+    $ml = new MovieList(xml2ary(getRESTXML($url)));
+    print_movie_list($ml, "dittary");
+?>

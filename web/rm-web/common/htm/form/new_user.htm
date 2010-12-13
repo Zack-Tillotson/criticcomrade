@@ -1,0 +1,158 @@
+        <div id="new_user_form">
+<?php
+    $userInfo = $GLOBALS['CC_API']['SESSION_DITTY'];
+    
+    if($userInfo->isReal())
+    {
+?>
+            <p>You are already logged in. Logout if you would like to create a new user.</p>
+            <form action="/form/logout/" method="post">
+                <input type="hidden" name="ref" value="<?php print "http://" . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI']; ?>"></input>
+                <input type="submit" value="Logout"></input>
+            </form>
+<?php
+    }
+    else
+    {
+?>
+            <form action="/form/new_user/" method="post">
+                <input type="hidden" name="ref" value="<?php print $_SERVER['HTTP_REFERER']; ?>"></input>
+                <h3>New User Form</h3>
+                <p><span class="form-required">The items marked in red are required</span>, everything else is optional and would only be used to improve this site.</p>
+                <table class="display-inline">
+                    <tr class="form-header">
+                        <td>Account Information</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td class="form-required"><label for="username">Username:</label></td>
+                        <td><input type="text" name="username" maxlength="12"<?php if($_REQUEST['inuser'] != '') print " value='" . $_REQUEST['inuser'] . "'"; ?>></input></td>
+<?php
+        if($_REQUEST['user'] == 1)
+        {
+?>
+                        <td class="form-required"><label for="username">Username must be between 3 and 12 charactors long</label></td>
+<?php
+        }
+        else if($_REQUEST['user'] == 2)
+        {
+?>
+                        <td class="form-required"><label for="username">Usernames must only contain letters, numbers, underscores, hyphens, or periods.</label></td>
+<?php
+        }
+        else if($_REQUEST['user'] == 3)
+        {
+?>
+                        <td class="form-required"><label for="username">Username already taken, please choose another</label></td>
+<?php
+        }
+?>
+                    </tr>
+                    <tr>
+                        <td class="form-required"><label for="password">Password:</label></td>
+                        <td><input type="password" name="password"></input></td>
+<?php
+        if($_REQUEST['pass'] == 1)
+        {
+?>
+                        <td class="form-required"><label for="password">Password must be between 6 and 25 charactors long</label></td>
+<?php
+        }
+?>
+                    </tr>
+                    <tr>
+                        <td class="form-required"><label for="password2">Repeat Password:</label></td>
+                        <td><input type="password" name="password2"></input></td>
+<?php
+        if($_REQUEST['pass2'] == 1)
+        {
+?>
+                        <td class="form-required"><label for="password">Passwords do not match</label></td>
+<?php
+        }
+?>
+                    </tr>
+                    <tr>
+                        <td>Remember My Account</td>
+                        <td><input type="checkbox" name="rememberme"></input></td>
+                    </tr>
+                    <tr class="form-header">
+                        <td>Personal Information</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td><label for="email">Email:</label></td>
+                        <td><input type="text" name="email"<?php if($_REQUEST['inemail'] != '') print " value='" . $_REQUEST['inemail'] . "'"; ?>></input></td>
+<?php
+        if($_REQUEST['email'] == 1)
+        {
+?>
+                        <td><label for="email">Email must be of form 'blah@blah.blah'. I don't even check to see if the domain is real, so meet me halfway here. -_-</label></td>
+<?php
+        }
+?>
+                    </tr>
+                    <tr>
+                        <td><label for="age">Age:</label></td>
+                        <td><input type="text" name="age" size="1" maxlength="3"<?php if($_REQUEST['inage'] != '') print " value='" . $_REQUEST['inage'] . "'"; ?>></input></td>
+<?php
+        if($_REQUEST['age'] == 1)
+        {
+?>
+                        <td><label for="age">Age has to be numeric.</label></td>
+<?php
+        }
+        else if($_REQUEST['age'] == 2)
+        {
+?>
+                        <td><label for="age">Age must be between 0 and 150, in years, be creative.</label></td>
+<?php
+        }
+?>
+                    </tr>
+                    <tr>
+                        <td><label for="sex">Sex:</label></td>
+                        <td>
+                            <input type="radio" name="sex" value="Male"<?php if($_REQUEST['insex'] == 'Male') print ' checked="checked"'; ?>>Male</input>
+                            <input type="radio" name="sex" value="Female"<?php if($_REQUEST['insex'] == 'Female') print ' checked="checked"'; ?>>Female</input>
+                        </td>
+<?php
+        if($_REQUEST['sex'] == 1)
+        {
+?>
+                        <td><label for="sex">I'm not sure how, but you managed to break a radio button. It only accepts 'Male' and 'Female'.</label></td>
+<?php
+        }
+?>
+                    </tr>
+                    <tr>
+                        <td><label for="firstname">First Name:</label></td>
+                        <td><input type="text" name="firstname"<?php if($_REQUEST['infirstname'] != '') print " value='" . $_REQUEST['infirstname'] . "'"; ?>></input></td>
+<?php
+        if($_REQUEST['firstname'] == 1)
+        {
+?>
+                        <td><label for="firstname">Names must only contain letters, numbers, underscores, hyphens, or periods. Sorry Ji/\/\.</label></td>
+<?php
+        }
+?>
+                    </tr>
+                    <tr>
+                        <td><label for="lastname">Last Name:</label></td>
+                        <td><input type="text" name="lastname"<?php if($_REQUEST['inlastname'] != '') print " value='" . $_REQUEST['inlastname'] . "'"; ?>></input></td>
+<?php
+        if($_REQUEST['lastname'] == 1)
+        {
+?>
+                        <td><label for="lastname">Names must only contain letters, numbers, underscores, hyphens, apostraphes, or periods. Sorry Mr. ("")[#__#]("").</label></td>
+<?php
+        }
+?>
+                    </tr>
+                </table>
+                <input type="submit" value="Submit">
+            </form>
+<?php
+    }
+?>
+        </div>

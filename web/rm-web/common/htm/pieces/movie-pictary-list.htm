@@ -1,0 +1,11 @@
+                <div class="pictary-list">
+<?php
+    $ml = $GLOBALS['ml'];
+    $leftSide = true;
+    foreach($ml->getMovies() as $m)
+    {
+        print_movie($m, ($leftSide?'left':'right') . '-pictary');
+        //$leftSide = !$leftSide;
+    }
+?>
+                </div>

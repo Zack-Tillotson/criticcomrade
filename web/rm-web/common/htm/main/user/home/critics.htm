@@ -1,0 +1,36 @@
+            <h1>My Critics</h1>
+<?php
+    $userInfo = $GLOBALS['CC_API']['SESSION_DITTY'];
+
+    if($userInfo->isGuest())
+    {
+?>
+            <p>This section needs to know what user you are.</p>
+<?php
+            include 'common/htm/form/login.htm';
+            return 1;
+    }
+    else
+    {
+
+        if($userInfo->isTemporary())
+        {
+?>
+            <p>Create an account to have the site remember which critics are best for you</p>
+<?php
+        }
+?>
+            <h2>Best Critics</h2>
+<?php
+        $url = $GLOBALS['RM_API_LOC'] . '/critics/all/sid/' . session_id() . '/?type=ditty&count=10&order-by=comrade';
+        $critics = new CriticList(xml2ary(getRESTXML($url)));
+        print_critic_list($critics, "dittary");
+?>
+            <h2>Worst Critics</h2>
+<?php
+        $url = $GLOBALS['RM_API_LOC'] . '/critics/all/sid/' . session_id() . '/?type=ditty&count=10&order-by=comrade-desc';
+        $critics = new CriticList(xml2ary(getRESTXML($url)));
+        print_critic_list($critics, "dittary");
+
+    }
+?>

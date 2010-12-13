@@ -1,0 +1,32 @@
+<?php
+
+    $page = isset($GLOBALS['RM_REQ']['PARAMS']['page']) ? $GLOBALS['RM_REQ']['PARAMS']['page'] : 1;
+    if($page < 1 || $page > 9999) $page = 1;
+    
+    $page_size = 20;
+    
+    $offset = ($page - 1) * $page_size;
+
+    // The url for the REST call to get the movie list
+    $url = $GLOBALS['RM_API_LOC'] . '/critics/all/sid/' . session_id() . '/?count=' . $page_size . '&offset=' . $offset;
+    $ml = new CriticList(xml2ary(getRESTXML($url)));
+
+?>
+            <div>
+                <h1>Full Critic List</h1>
+                <p>Searching? Use the quick search in the upper right corner or go <a href="/search/">here</a> for a more advanced search.</p>
+                <?php print_critic_list($ml, "dittary"); ?>
+                <div>
+                    <a class="pad-left-side" href="/critics/id/">|&lt;</a>
+<?php
+    for($i = $page - 3; $i < $page + 3; $i++)
+        if($i >= 1 && $i<= ceil($ml->getMaxSize() / $page_size))
+        {
+?>
+                    <a class="pad-left-side <?php if($i == $page) { ?>bigger<?php } ?>" href="/critics/id/?page=<?php print $i; ?>"><?php print $i; ?></a>
+<?php
+        }
+?>
+                    <a class="pad-left-side" href="/critics/id/?page=<?php print ceil($ml->getMaxSize() / $page_size); ?>">&gt;|</a>
+                </div>
+            </div>

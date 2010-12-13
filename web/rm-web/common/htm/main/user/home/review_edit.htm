@@ -1,0 +1,56 @@
+<?php
+
+    // The url for the REST call to get the movie list
+    $user_review_url = $GLOBALS['RM_API_LOC'] . '/users/id/' . db_get_username(session_id()) . '/reviews/' . $GLOBALS['RM_REQ']['URI'][5] . '/';
+
+    // Do the rest get call and convert to array
+    $ml = xml2ary(getRESTXML($user_review_url));
+
+    $user = "";
+    $id = "";
+    $title = "";
+    $score = "";
+    $date = "";
+    $words = "";
+
+    if(isset($ml['one-review']))
+    {
+
+        $user = $ml['one-review']['_c']['user']['_v'];
+        $id = $ml['one-review']['_c']['id']['_v'];
+        $title = $ml['one-review']['_c']['title']['_v'];
+        $score = $ml['one-review']['_c']['score']['_v'];
+        $date = $ml['one-review']['_c']['review-date']['_v'];
+        $words = $ml['one-review']['_c']['summary']['_v'];
+
+    }
+
+    if(!db_is_session_real_usered())
+    {
+?>
+            <h2>Edit Reviews</h2>
+            <p>This section needs to know what user you are.</p>
+<?php
+            include 'common/htm/form/login.htm';
+    }
+    else
+    {
+?>
+            <h2>Edit Review</h2>
+            <div>
+<?php
+
+    // These are used in the form to pre-fillout fields
+    $form_id = $id;
+    $form_title = $title;
+    $form_score = $score;
+    $form_date = $date;
+    $form_words = $words;
+
+    include 'common/htm/form/user_review.htm';
+    
+?>
+            </div>
+<?php
+    }
+?>

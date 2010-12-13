@@ -1,0 +1,105 @@
+Buildfile: build.xml
+
+-pre-init:
+
+-init-private:
+
+-init-user:
+
+-init-project:
+
+-init-macrodef-property:
+
+-do-init:
+
+-post-init:
+
+-init-check:
+
+-init-macrodef-javac:
+
+-init-macrodef-junit:
+
+-init-debug-args:
+
+-init-macrodef-nbjpda:
+
+-init-macrodef-debug:
+
+-init-macrodef-java:
+
+-init-presetdef-jar:
+
+init:
+
+deps-clean:
+
+-do-clean:
+   [delete] Deleting directory /home/zt218146/NetBeansProjects/rottenmeta/cc-ai/build
+
+-post-clean:
+
+clean:
+
+-pre-init:
+
+-init-private:
+
+-init-user:
+
+-init-project:
+
+-init-macrodef-property:
+
+-do-init:
+
+-post-init:
+
+-init-check:
+
+-init-macrodef-javac:
+
+-init-macrodef-junit:
+
+-init-debug-args:
+
+-init-macrodef-nbjpda:
+
+-init-macrodef-debug:
+
+-init-macrodef-java:
+
+-init-presetdef-jar:
+
+init:
+
+deps-jar:
+
+-check-automatic-build:
+
+-clean-after-automatic-build:
+
+-verify-automatic-build:
+
+-pre-pre-compile:
+    [mkdir] Created dir: /home/zt218146/NetBeansProjects/rottenmeta/cc-ai/build/classes
+
+-pre-compile:
+
+-compile-depend:
+
+-do-compile:
+    [javac] Compiling 19 source files to /home/zt218146/NetBeansProjects/rottenmeta/cc-ai/build/classes
+    [javac] Note: Some input files use unchecked or unsafe operations.
+    [javac] Note: Recompile with -Xlint:unchecked for details.
+     [copy] Copying 1 file to /home/zt218146/NetBeansProjects/rottenmeta/cc-ai/build/classes
+
+-post-compile:
+
+compile:
+
+run:
+     [java] Java Result: 143
+
+BUILD SUCCESSFUL
+Total time: 10 minutes 25 seconds
