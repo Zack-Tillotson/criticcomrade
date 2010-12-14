@@ -1,0 +1,6 @@
+There are 5 main parts to this code:
+1. rm-api: Java servlet, restful interface to movie, critic, user, and review information. Supports xml.
+2. rm-web: PHP web interface. Accesses api for all db calls. 
+3. scripts: web scraping scripts for collecting movie, critic, and user information from rottentomatoes, metacritic, and imdb.
+4. ai: Small addon written to optimize critic suggestion algorithm.
+5. db: mysql db specification and example dump.
